@@ -1,31 +1,18 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
+mod app;
+
 use eframe::egui;
 
 fn main() -> eframe::Result {
     let options = eframe::NativeOptions {
-        viewport: egui::ViewportBuilder::default().with_inner_size([320.0, 240.0]),
+        viewport: egui::ViewportBuilder::default().with_inner_size(app::WINDOW_SIZE),
         ..Default::default()
     };
-    eframe::run_native(
-        "My egui App",
+
+    return eframe::run_native(
+        app::WINDOW_TITLE,
         options,
-        Box::new(|_cc| Ok(Box::<MyApp>::default())),
-    )
-}
-
-struct MyApp {}
-
-impl Default for MyApp {
-    fn default() -> Self {
-        Self {}
-    }
-}
-
-impl eframe::App for MyApp {
-    fn ui(&mut self, ui: &mut egui::Ui, _frame: &mut eframe::Frame) {
-        egui::CentralPanel::default().show(ui, |ui| {
-            ui.heading("Hello World!");
-        });
-    }
+        Box::new(|_cc| Ok(Box::<app::MarkBrowserApp>::default())),
+    );
 }
