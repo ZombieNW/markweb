@@ -6,6 +6,7 @@ edition = "2024"
 [dependencies]
 eframe = "0.36.2"
 egui = "0.36.2"
+markdown = "1.0.0"
 
 [profile.release]
 opt-level = "s"
